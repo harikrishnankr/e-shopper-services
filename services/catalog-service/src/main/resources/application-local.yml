@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5436/catalog
+    username: catalog_svc
+    password: catalog
+  data.redis:
+    host: localhost
+    port: 6380

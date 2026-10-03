@@ -1,0 +1,11 @@
+spring:
+  application.name: catalog-service
+  profiles.default: local          # plain "Run" uses local profile
+  jpa:
+    open-in-view: false            # avoid lazy-loading in controllers
+    hibernate.ddl-auto: validate   # Flyway owns the schema
+server:
+  port: 8081
+management:
+  endpoints.web.exposure.include: health,info
+  endpoint.health.probes.enabled: true
