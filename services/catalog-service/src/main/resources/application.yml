@@ -6,6 +6,16 @@ spring:
     hibernate.ddl-auto: validate   # Flyway owns the schema
 server:
   port: 8081
+storage:
+  endpoint: http://localhost:9000
+  public-endpoint: http://localhost:9000
+  bucket: eshopper-media
+  region: us-east-1
+  access-key: ${STORAGE_ACCESS_KEY:minioadmin}
+  secret-key: ${STORAGE_SECRET_KEY:minioadmin}
+  public-base-url: http://localhost:9000/eshopper-media
+  upload-url-ttl: 10m
+  max-logo-bytes: 2097152
 management:
   endpoints.web.exposure.include: health,info
   endpoint.health.probes.enabled: true

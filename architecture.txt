@@ -1,0 +1,9 @@
+            Next.js (storefront + /seller portal)
+                          │
+              NestJS GraphQL BFF (role-based)
+          ┌───────────────┼────────────────┐
+   Catalog Service     User Service     Order Service
+   catalog             identity         cart (Redis)
+   inventory           customer         checkout (saga)
+   search (PG FTS)     seller           order, payment
+                                        notification
