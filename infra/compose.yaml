@@ -33,7 +33,7 @@ services:
     volumes:
       - minio-data:/data
 
-    minio-init:
+  minio-init:
       image: amazon/aws-cli:latest
       depends_on: [ minio ]
       environment:
