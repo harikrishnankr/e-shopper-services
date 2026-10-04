@@ -4,6 +4,7 @@ import com.eshopper.catalog.brand.dto.BrandResponse;
 import com.eshopper.catalog.brand.dto.CreateBrandRequest;
 import com.eshopper.catalog.brand.dto.LogoUploadRequest;
 import com.eshopper.catalog.brand.dto.UpdateBrandRequest;
+import com.eshopper.catalog.shared.response.ApiResponse;
 import com.eshopper.catalog.shared.storage.PresignedUpload;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -22,34 +23,34 @@ public class BrandController {
     }
 
     @PostMapping("/logo-uploads")
-    PresignedUpload createLogoUpload(@Valid @RequestBody LogoUploadRequest req) {
-        return service.createLogoUpload(req.contentType());
+    ApiResponse<PresignedUpload> createLogoUpload(@Valid @RequestBody LogoUploadRequest req) {
+        return ApiResponse.success(service.createLogoUpload(req.contentType()));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    BrandResponse create(@Valid @RequestBody CreateBrandRequest req) {
-        return service.create(req);
+    ApiResponse<BrandResponse> create(@Valid @RequestBody CreateBrandRequest req) {
+        return ApiResponse.success(service.create(req));
     }
 
     @GetMapping("/{slug}")
-    BrandResponse get(@PathVariable String slug) {
-        return service.getBySlug(slug);
+    ApiResponse<BrandResponse> get(@PathVariable String slug) {
+        return ApiResponse.success(service.getBySlug(slug));
     }
 
     @GetMapping("/list")
-    List<BrandResponse> getAll() {
-        return service.getAllBrands();
+    ApiResponse<List<BrandResponse>> getAll() {
+        return ApiResponse.success(service.getAllBrands());
     }
 
     @DeleteMapping("/{id}")
-    boolean delete(@PathVariable UUID id) {
+    ApiResponse<Void> delete(@PathVariable UUID id) {
         service.delete(id);
-        return true;
+        return ApiResponse.success(null);
     }
 
     @PatchMapping("/{id}")
-    BrandResponse update(@PathVariable UUID id, @Valid @RequestBody UpdateBrandRequest req) {
-        return service.update(id, req);
+    ApiResponse<BrandResponse> update(@PathVariable UUID id, @Valid @RequestBody UpdateBrandRequest req) {
+        return ApiResponse.success(service.update(id, req));
     }
 }
